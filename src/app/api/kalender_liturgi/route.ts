@@ -38,10 +38,11 @@ export async function GET() {
     }
 
     return NextResponse.json(result.rows[0]);
-  } catch (error: any) {
-    console.error(error);
+  } catch (error) {
+    const err = error as Error;
+    console.error(err);
     return NextResponse.json(
-      { error: error.message },
+      { error: err.message },
       { status: 500 }
     );
   }

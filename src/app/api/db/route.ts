@@ -13,7 +13,8 @@ export async function GET() {
   try {
     const result = await pool.query('SELECT now()');
     return Response.json({ status: 'connected', serverTime: result.rows[0] });
-  } catch (error: any) {
-    return Response.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    const err = error as Error;
+    return Response.json({ error: err.message }, { status: 500 });
   }
 }

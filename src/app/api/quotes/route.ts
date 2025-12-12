@@ -21,7 +21,8 @@ export async function GET() {
 
     const konten = result.rows.length > 0 ? result.rows[0].konten : 'Tidak ada quote untuk hari ini.';
     return Response.json({ konten });
-  } catch (e: any) {
-    return Response.json({ error: e.message }, { status: 500 });
+  } catch (e) {
+    const error = e as Error;
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }

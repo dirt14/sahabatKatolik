@@ -13,7 +13,8 @@ export async function GET() {
   try {
     const result = await pool.query('SELECT * FROM renungan_hari_ini ORDER BY id DESC');
     return Response.json(result.rows);
-  } catch (e: any) {
-    return Response.json({ error: e.message }, { status: 500 });
+  } catch (e) {
+    const error = e as Error;
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }
