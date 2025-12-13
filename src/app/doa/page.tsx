@@ -127,9 +127,9 @@ export default function DoaPage() {
               <p className="text-gray-600 dark:text-gray-300">
                 Menampilkan <span className="font-semibold text-emerald-600 dark:text-emerald-400">{filteredPrayers.length}</span> doa
                 {selectedCategory !== "semua" && (
-                  <span> dalam kategori <span className="font-semibold">"{prayerCategories.find(c => c.id === selectedCategory)?.name}"</span></span>
+                  <span> dalam kategori <span className="font-semibold">&quot;{prayerCategories.find(c => c.id === selectedCategory)?.name}&quot;</span></span>
                 )}
-                {searchTerm && <span> untuk <span className="font-semibold">"{searchTerm}"</span></span>}
+                {searchTerm && <span> untuk <span className="font-semibold">&quot;{searchTerm}&quot;</span></span>}
               </p>
             </div>
 

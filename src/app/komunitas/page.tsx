@@ -146,7 +146,7 @@ export default function KomunitasPage() {
 
                 <article className="pb-6 group">
                   <h4 className="font-semibold text-lg text-gray-800 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 cursor-pointer transition-colors duration-200">
-                    Perayaan Natal 2024: Tema "Damai di Bumi"
+                    Perayaan Natal 2024: Tema &quot;Damai di Bumi&quot;
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
                     Gereja-gereja di Indonesia mempersiapkan perayaan Natal dengan tema perdamaian dunia...

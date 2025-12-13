@@ -33,7 +33,7 @@ export default function PrayerRequests() {
     const saved = localStorage.getItem("sahabat-katolik-prayer-requests");
     if (saved) {
       const parsed = JSON.parse(saved);
-      setRequests(parsed.map((req: any) => ({
+      setRequests(parsed.map((req: { timestamp: string | number | Date; }) => ({
         ...req,
         timestamp: new Date(req.timestamp)
       })));

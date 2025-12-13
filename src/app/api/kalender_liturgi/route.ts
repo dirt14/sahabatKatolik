@@ -9,7 +9,10 @@ const pool = new Pool({
   port: 5432,
 });
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const date = searchParams.get('date') || new Date().toISOString().split('T')[0];
+
   try {
     const result = await pool.query(
       `SELECT 
@@ -21,13 +24,14 @@ export async function GET() {
         mazmur,
         injil
        FROM kalender_liturgi
-       WHERE tanggal = CURRENT_DATE
-       LIMIT 1`
+       WHERE tanggal = $1
+       LIMIT 1`,
+      [date]
     );
 
     if (result.rows.length === 0) {
       return NextResponse.json({
-        tanggal: new Date().toISOString().split("T")[0],
+        tanggal: date,
         peringatan_hari: "Hari Biasa",
         warna_liturgi: "hijau",
         bacaan1: null,

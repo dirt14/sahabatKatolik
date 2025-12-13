@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import AccessibilityControls from "@/components/AccessibilityControls";
-import { Cross, Heart, BookOpen, Calendar, Radio, Users, Info } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import { Cross, Heart, BookOpen, Info } from "lucide-react";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -40,60 +42,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-inter antialiased">
         <ThemeProvider>
         {/* Navbar */}
-        <nav className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              {/* Logo */}
-              <a href="/" className="flex items-center space-x-3 group">
-                <div className="relative">
-                  <Cross className="h-8 w-8 text-emerald-600 dark:text-emerald-400 transition-transform duration-200 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-emerald-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-gray-800 dark:text-white tracking-tight">Sahabat Katolik</h1>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Portal Rohani Digital</p>
-                </div>
-              </a>
-
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-1">
-                <a href="/" className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg font-medium transition-all duration-200">
-                  <BookOpen className="w-4 h-4" />
-                  <span>Beranda</span>
-                </a>
-                <a href="/doa" className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg font-medium transition-all duration-200">
-                  <Heart className="w-4 h-4" />
-                  <span>Doa</span>
-                </a>
-                <a href="/live-streaming" className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg font-medium transition-all duration-200">
-                  <Radio className="w-4 h-4" />
-                  <span>Live</span>
-                </a>
-                <a href="/kalender-liturgi" className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg font-medium transition-all duration-200">
-                  <Calendar className="w-4 h-4" />
-                  <span>Liturgi</span>
-                </a>
-                <a href="/komunitas" className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg font-medium transition-all duration-200">
-                  <Users className="w-4 h-4" />
-                  <span>Komunitas</span>
-                </a>
-                <a href="/tentang" className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg font-medium transition-all duration-200">
-                  <Info className="w-4 h-4" />
-                  <span>Tentang</span>
-                </a>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <div className="md:hidden">
-                <button className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
+        <Navbar />
 
         {/* Main Content */}
         <main className="flex-1">
@@ -134,28 +83,28 @@ export default function RootLayout({
                 </h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="/" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
+                    <Link href="/" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
                       <span className="w-1 h-1 bg-gray-400 rounded-full group-hover:bg-emerald-600 transition-colors duration-200"></span>
                       <span>Beranda</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/doa" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
+                    <Link href="/doa" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
                       <span className="w-1 h-1 bg-gray-400 rounded-full group-hover:bg-emerald-600 transition-colors duration-200"></span>
                       <span>Kumpulan Doa</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/live-streaming" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
+                    <Link href="/live-streaming" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
                       <span className="w-1 h-1 bg-gray-400 rounded-full group-hover:bg-emerald-600 transition-colors duration-200"></span>
                       <span>Live Streaming</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/kalender-liturgi" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
+                    <Link href="/kalender-liturgi" className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center space-x-2 group">
                       <span className="w-1 h-1 bg-gray-400 rounded-full group-hover:bg-emerald-600 transition-colors duration-200"></span>
                       <span>Kalender Liturgi</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

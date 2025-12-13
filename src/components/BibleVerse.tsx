@@ -170,7 +170,7 @@ export default function BibleVerse() {
       {/* Main Verse Display */}
       <div className="bg-gradient-to-r from-emerald-50 to-amber-50 dark:from-emerald-900/20 dark:to-amber-900/20 rounded-lg p-6 border-l-4 border-emerald-500">
         <blockquote className="text-lg md:text-xl font-serif text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          "{currentVerse.verse}"
+          &ldquo;{currentVerse.verse}&rdquo;
         </blockquote>
         <cite className="text-emerald-700 dark:text-emerald-400 font-semibold">
           — {currentVerse.reference}

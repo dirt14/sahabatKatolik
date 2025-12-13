@@ -1,8 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { youtubeChannels } from "@/lib/liturgical-data";
-import { Radio, Clock, MapPin, Calendar, Share2, Bookmark, Send, Users, Bell } from "lucide-react";
+import { Radio, Clock, MapPin, Calendar, Share2, Bookmark, Send, Users, Bell, Loader2 } from "lucide-react";
+
+interface LiveVideo {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  publishedAt: string;
+  concurrentViewers?: number;
+  actualStartTime?: string;
+}
+
+interface UpcomingVideo {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  publishedAt: string;
+  scheduledStartTime: string;
+}
+
+interface StreamingData {
+  liveVideo: LiveVideo | null;
+  upcomingVideos: UpcomingVideo[];
+  message?: string;
+}
 
 export default function LiveStreamingPage() {
   const [selectedChannel, setSelectedChannel] = useState(0);

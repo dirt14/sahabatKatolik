@@ -1,12 +1,19 @@
-# TODO: Update "Perlu Kita Ingat" Section
+# TODO: Implement VaticanSlideshow in Hero Section
 
 ## Completed Tasks
-- [x] Update quotes API to fetch daily quote based on tanggal column
-- [x] Make homepage component async to fetch quote on load
-- [x] Replace hardcoded quote with dynamic dailyQuote variable
-- [x] Update blockquote to display dailyQuote
+- [x] Update VaticanSlideshow.tsx to use local images (slideshow1.jpg to slideshow4.jpg)
+- [x] Replace img tags with Next.js Image components for optimization
+- [x] Import VaticanSlideshow component in page.tsx
+- [x] Replace Hero Section with VaticanSlideshow component
 
-## Followup Steps
-- [ ] Test the API endpoint to ensure it returns the correct quote
-- [ ] Test the homepage to verify the quote displays correctly
-- [ ] Verify database connection and table structure
+## Summary
+- The VaticanSlideshow component has been successfully integrated into the homepage Hero Section
+- Images are now sourced from public/images/ folder using Next.js Image component
+- The slideshow is full-width, responsive, and includes autoplay functionality
+- Maintains the existing website style with overlay text and navigation elements
+- Component replaces the previous static gradient hero section
+
+## Next Steps
+- Test the implementation by running the development server
+- Verify slideshow functionality and responsiveness across devices
+- Ensure images load properly and autoplay works as expected

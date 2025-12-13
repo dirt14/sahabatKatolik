@@ -93,6 +93,7 @@ export default function TentangPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="text-center group">
                 <div className="w-24 h-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cadb45a9-df4f-4f44-a4f1-15f0f994d42b.png" 
                     alt="Desain minimalis modern dengan elemen katolik yang elegan"
@@ -108,6 +109,7 @@ export default function TentangPage() {
 
               <div className="text-center group">
                 <div className="w-24 h-24 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/92b7d12e-3cfb-4144-b8c9-864c5caba14f.png" 
                     alt="Palet warna hijau dan emas yang harmonis dan spiritual"
@@ -123,6 +125,7 @@ export default function TentangPage() {
 
               <div className="text-center group">
                 <div className="w-24 h-24 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f6733f2e-ff14-4495-8fe1-8a67f6560335.png" 
                     alt="Tipografi elegan yang mudah dibaca untuk konten rohani"
@@ -222,6 +225,7 @@ export default function TentangPage() {
                 </div>
               </div>
               <div className="text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/138dbc92-65da-4ae5-baa4-dbc100919b37.png" 
                   alt="Stack teknologi modern untuk pengembangan web yang canggih"
@@ -276,7 +280,7 @@ export default function TentangPage() {
               </p>
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center border-l-4 border-emerald-600 dark:border-emerald-400">
                 <p className="text-emerald-700 dark:text-emerald-300 font-bold text-xl italic mb-2">
-                  "Ad Majorem Dei Gloriam"
+                  &ldquo;Ad Majorem Dei Gloriam&rdquo;
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Untuk Kemuliaan Allah yang Lebih Besar

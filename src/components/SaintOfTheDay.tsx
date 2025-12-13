@@ -88,6 +88,7 @@ export default function SaintOfTheDay() {
 
       <div className="flex flex-col md:flex-row gap-4">
         <div className="md:w-1/3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={currentSaint.image}
             alt={`Gambar ${currentSaint.name}`}
@@ -131,7 +132,7 @@ export default function SaintOfTheDay() {
 
               <div className="bg-gradient-to-r from-emerald-50 to-amber-50 dark:from-emerald-900/20 dark:to-amber-900/20 p-4 rounded-lg border-l-4 border-emerald-500">
                 <p className="text-gray-700 dark:text-gray-300 italic font-serif">
-                  "{currentSaint.quote}"
+                  &ldquo;{currentSaint.quote}&rdquo;
                 </p>
               </div>
             </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getLiturgicalColor } from "@/lib/liturgical-data";
 import { formatDateToYYYYMMDD } from "@/lib/utils";
 import { Calendar, ChevronLeft, ChevronRight, BookOpen, Sparkles } from "lucide-react";
 
@@ -15,7 +14,7 @@ interface LiturgiData {
 }
 
 export default function KalenderLiturgiPage() {
-  const today = new Date();
+  const [today] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -42,7 +41,7 @@ export default function KalenderLiturgiPage() {
   useEffect(() => {
     setSelectedDate(today);
     fetchLiturgiByDate(today);
-  }, []);
+  }, [today]);
 
   const months = [
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
@@ -239,11 +238,11 @@ export default function KalenderLiturgiPage() {
                           className="w-5 h-5 rounded-full border-2 border-white dark:border-gray-700 shadow-lg"
                           style={{
                             backgroundColor:
-                              liturgi.warna_liturgi === "hijau"
+                              liturgi.warna_liturgi === "Hijau"
                                 ? "#10B981"
-                                : liturgi.warna_liturgi === "putih"
+                                : liturgi.warna_liturgi === "Putih"
                                 ? "#FFFFFF"
-                                : liturgi.warna_liturgi === "merah"
+                                : liturgi.warna_liturgi === "Merah"
                                 ? "#EF4444"
                                 : "#A855F7",
                           }}

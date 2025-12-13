@@ -1,4 +1,5 @@
 import { Sparkles, Heart, Calendar, Radio, BookOpen, TrendingUp } from "lucide-react";
+import VaticanSlideshow from "@/components/VaticanSlideshow";
 
 async function getDailyQuote() {
   try {
@@ -40,63 +41,35 @@ async function getTodaysLiturgicalData() {
   }
 }
 
+async function getTodaysReadings() {
+  try {
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/bacaan?date=${formattedDate}`,
+      { cache: "no-store" }
+    );
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching readings:", error);
+    return null;
+  }
+}
+
 export default async function HomePage() {
   const dailyQuote = await getDailyQuote();
   const todaysLiturgicalData = await getTodaysLiturgicalData();
+  const todaysReadings = await getTodaysReadings();
 
   return (
     <div className="min-h-screen">
 
-      {/* Hero Section - Lebih Rohani dan Damai */}
-      <section className="relative bg-gradient-to-br from-white via-gray-50 to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-emerald-900/20 py-24 overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(16 185 129) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Sacred Icon */}
-          <div className="flex justify-center mb-8">
-            <div className="relative">
-              <div className="absolute inset-0 bg-emerald-400/20 blur-3xl rounded-full"></div>
-              <div className="relative bg-white dark:bg-gray-800 p-6 rounded-full shadow-lg">
-                <Sparkles className="h-12 w-12 text-emerald-600 dark:text-emerald-400" />
-              </div>
-            </div>
-          </div>
-
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-6 tracking-tight">
-            Sahabat <span className="text-emerald-600 dark:text-emerald-400">Katolik</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Portal rohani digital untuk mendampingi perjalanan iman Anda.
-            <br className="hidden sm:block" />
-            Temukan kedamaian dalam doa, liturgi, dan renungan harian.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="/doa"
-              className="group flex items-center space-x-2 bg-emerald-600 dark:bg-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <Heart className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-              <span>Mulai Berdoa</span>
-            </a>
-
-            <a
-              href="/live-streaming"
-              className="group flex items-center space-x-2 bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 border-2 border-emerald-600 dark:border-emerald-400 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              <Radio className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-              <span>Live Streaming Misa</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - Vatican Slideshow */}
+      <VaticanSlideshow />
 
       {/* Quote Section - Lebih Elegan */}
       <section className="py-20 bg-white dark:bg-gray-900">
@@ -112,7 +85,7 @@ export default async function HomePage() {
           <div className="max-w-4xl mx-auto">
             <div className="relative bg-gradient-to-br from-emerald-50 via-white to-amber-50 dark:from-emerald-900/20 dark:via-gray-800 dark:to-amber-900/20 rounded-3xl p-12 md:p-16 shadow-xl border border-gray-100 dark:border-gray-700">
               {/* Decorative Quote Mark */}
-              <div className="absolute top-8 left-8 text-8xl text-emerald-200 dark:text-emerald-800 font-serif leading-none">"</div>
+              <div className="absolute top-8 left-8 text-8xl text-emerald-200 dark:text-emerald-800 font-serif leading-none">&ldquo;</div>
               
               <blockquote className="relative text-2xl md:text-3xl font-noto-serif text-gray-700 dark:text-gray-200 leading-relaxed text-center">
                 {dailyQuote}
@@ -139,9 +112,10 @@ export default async function HomePage() {
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
           </div>
 
-          {/* Card Hari Ini */}
-          <div className="flex justify-center">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 w-full max-w-3xl hover:shadow-2xl transition-shadow duration-200">
+          {/* Cards Hari Ini */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Kalender Liturgi Card */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-shadow duration-200">
 
               {/* Header dengan Warna Liturgi */}
               <div className="flex items-center justify-between mb-8">
@@ -246,6 +220,88 @@ export default async function HomePage() {
                 </a>
               </div>
             </div>
+
+            {/* Bacaan Harian Card */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-shadow duration-200">
+
+              {/* Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center space-x-3">
+                  <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Bacaan Harian</h3>
+                </div>
+                <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  {new Date().toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "short"
+                  })}
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="space-y-6">
+                {todaysReadings ? (
+                  <>
+                    {todaysReadings.bacaan1 && (
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50/50 dark:from-blue-900/20 dark:to-indigo-900/10 rounded-xl p-6">
+                        <h4 className="font-semibold text-gray-800 dark:text-white mb-3 flex items-center space-x-2">
+                          <BookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                          <span>Bacaan 1</span>
+                        </h4>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {todaysReadings.bacaan1}
+                        </p>
+                      </div>
+                    )}
+
+                    {todaysReadings.bacaan2 && (
+                      <div className="bg-gradient-to-r from-purple-50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/10 rounded-xl p-6">
+                        <h4 className="font-semibold text-gray-800 dark:text-white mb-3 flex items-center space-x-2">
+                          <BookOpen className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                          <span>Bacaan 2</span>
+                        </h4>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {todaysReadings.bacaan2}
+                        </p>
+                      </div>
+                    )}
+
+                    {todaysReadings.injil && (
+                      <div className="bg-gradient-to-r from-emerald-50 to-teal-50/50 dark:from-emerald-900/20 dark:to-teal-900/10 rounded-xl p-6">
+                        <h4 className="font-semibold text-gray-800 dark:text-white mb-3 flex items-center space-x-2">
+                          <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                          <span>Injil</span>
+                        </h4>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {todaysReadings.injil}
+                        </p>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="bg-gradient-to-r from-gray-50 to-slate-50/50 dark:from-gray-700/50 dark:to-slate-900/20 rounded-xl p-6 text-center">
+                    <BookOpen className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+                    <p className="text-gray-600 dark:text-gray-300 font-medium">
+                      Bacaan belum tersedia
+                    </p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
+                      Bacaan untuk hari ini sedang disiapkan
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* CTA */}
+              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <a
+                  href="/bacaan-harian"
+                  className="inline-flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold transition-colors duration-200 group"
+                >
+                  <span>Lihat Bacaan Lengkap</span>
+                  <TrendingUp className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -282,7 +338,7 @@ export default async function HomePage() {
 
                   <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-6 mt-8 border-l-4 border-emerald-600 dark:border-emerald-400">
                     <p className="text-emerald-800 dark:text-emerald-200 font-semibold italic text-center text-lg">
-                      "Berikanlah pada kami rezeki pada hari ini"
+                      &ldquo;Berikanlah pada kami rezeki pada hari ini&rdquo;
                     </p>
                     <p className="text-emerald-600 dark:text-emerald-400 text-center text-sm mt-2">
                       — Doa Bapa Kami
@@ -314,6 +370,7 @@ export default async function HomePage() {
 
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-shadow duration-200">
                 <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50e92a0f-39fc-4911-9de7-6b57a9608eda.png"
                     alt="Live streaming misa"
@@ -358,6 +415,7 @@ export default async function HomePage() {
                 {/* Artikel 1 */}
                 <article className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100 dark:border-gray-700 group">
                   <div className="flex space-x-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/86d713c7-bc8d-4772-b055-df29d6113a9b.png"
                       alt="Artikel"
@@ -378,6 +436,7 @@ export default async function HomePage() {
                 {/* Artikel 2 */}
                 <article className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100 dark:border-gray-700 group">
                   <div className="flex space-x-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/db427c9a-17b4-4622-b5f2-c6665e22f84f.png"
                       alt="Artikel"
@@ -398,6 +457,7 @@ export default async function HomePage() {
                 {/* Artikel 3 */}
                 <article className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100 dark:border-gray-700 group">
                   <div className="flex space-x-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/69577723-94a2-4c4e-85e5-7c7eed6abc7f.png"
                       alt="Artikel"
